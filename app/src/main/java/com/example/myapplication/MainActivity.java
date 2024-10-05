@@ -1,5 +1,9 @@
 package com.example.myapplication;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private Button falseButton;
     private Button nextButton;
     private TextView questionTextView;
-    private Integer currentPoints = 0;
 
     private int currentIndex = 0;
+    private Integer currentPoints = 0;
+    private Boolean option;
 
     private Question[] questions = new Question[] {
             new Question(R.string.q_activity, true),
@@ -57,31 +62,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // buttons etc
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
         nextButton = findViewById(R.id.next_button);
         questionTextView = findViewById(R.id.question_text_view);
 
+        // Button listeners
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                checkAnswerCorrectness(true);
-                setNextQuestion(1);
+                falseButton.setBackgroundColor(Color.rgb(103, 80, 164));
+                trueButton.setBackgroundColor(Color.GREEN);
+                option = true;
             }
         });
 
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                checkAnswerCorrectness(false);
-                setNextQuestion(1);
+                trueButton.setBackgroundColor(Color.rgb(103, 80, 164));
+                falseButton.setBackgroundColor(Color.GREEN);
+                option = false;
             }
         });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setNextQuestion(1);
+                if(option != null){
+                    checkAnswerCorrectness(option);
+                    option = null;
+                    falseButton.setBackgroundColor(Color.rgb(103, 80, 164));
+                    trueButton.setBackgroundColor(Color.rgb(103, 80, 164));
+                    setNextQuestion(1);
+                }
             }
         });
 
