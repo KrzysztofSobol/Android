@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button falseButton;
     private Button nextButton;
     private TextView questionTextView;
+    private Integer currentPoints = 0;
 
     private int currentIndex = 0;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         boolean correctAnswer = questions[currentIndex].isTrueAnswer();
         int resultMessageId = 0;
         if(userAnswer == correctAnswer) {
+            currentPoints++;
             resultMessageId = R.string.correct_answer;
         } else {
             resultMessageId = R.string.incorrect_answer;
@@ -41,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, resultMessageId, Toast.LENGTH_SHORT).show();
     }
 
-    private void setNextQuestion() {
+    private void setNextQuestion(int i) {
+        currentIndex = (currentIndex + i)%questions.length;
+        if(currentIndex == 0 && i != 0){
+            Toast.makeText(this, currentPoints + "/5 punktów", Toast.LENGTH_SHORT).show();
+            currentPoints = 0;
+        }
         questionTextView.setText(questions[currentIndex].getQuestionId());
     }
 
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 checkAnswerCorrectness(true);
+                setNextQuestion(1);
             }
         });
 
@@ -66,16 +74,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 checkAnswerCorrectness(false);
+                setNextQuestion(1);
             }
         });
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                currentIndex = (currentIndex + 1)%questions.length;
-                setNextQuestion();
+                setNextQuestion(1);
             }
         });
+
+        setNextQuestion(0);
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

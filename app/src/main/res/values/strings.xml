@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">krzysztofS</string>
+    <string name="app_name">QuizApp</string>
     <string name="button_true">Prawda</string>
-    <string name="button_false">Falsz</string>
-    <string name="button_next">Next</string>
+    <string name="button_false">Fałsz</string>
+    <string name="button_next">Następny</string>
 
     <string name="q_activity">Activity jest jednym z komponentów aplikacji Android</string>
     <string name="q_version">Android 8 jest najnowszą wersją systemu Android</string>
@@ -10,8 +10,8 @@
     <string name="q_resources">Zasoby aplikacji dla systemu Android definiuje się w plikach .xml</string>
     <string name="q_find_resources">Do zasobów w aplikacji dla systemu Android odnosimy się po nazwach</string>
 
-    <string name="correct_answer">MEGA WIN</string>
-    <string name="incorrect_answer">przegrana :(</string>
+    <string name="correct_answer">dobrze!</string>
+    <string name="incorrect_answer">źle!</string>
 </resources>
 
 
