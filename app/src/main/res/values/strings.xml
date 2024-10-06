@@ -12,6 +12,8 @@
 
     <string name="correct_answer">dobrze!</string>
     <string name="incorrect_answer">źle!</string>
+    <string name="podpowiedz">Podpowiedź</string>
+    <string name="answer_was_shown">Ujawniono poprawna odpowiedz</string>
 </resources>
 
 

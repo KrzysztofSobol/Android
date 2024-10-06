@@ -9,7 +9,7 @@ public class Question {
         this.trueAnswer = trueAnswer;
     }
 
-    public boolean isTrueAnswer() {
+    public boolean getTrueAnswer() {
         return trueAnswer;
     }
 
